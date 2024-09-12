@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { NewFlatComponent } from './new-flat/new-flat.component';
 import { ViewFlatComponent } from './view-flat/view-flat.component';
 import { EditFlatComponent } from './edit-flat/edit-flat.component';
-import { MyFlatsComponent } from './my-flats/my-flats.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
@@ -18,7 +17,6 @@ const routes: Routes = [
   { path: 'new-flat', component: NewFlatComponent },
   { path: 'view-flat', component: ViewFlatComponent },
   { path: 'edit-flat', component: EditFlatComponent },
-  { path: 'my-flats', component: MyFlatsComponent },
   { path: 'favourites', component: FavouritesComponent },
   { path: 'search', component: SearchComponent },
   { path: 'login', component: LoginComponent },
