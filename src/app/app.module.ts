@@ -15,6 +15,8 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { AllUsersComponent } from './all-users/all-users.component';
 import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messages.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messag
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
