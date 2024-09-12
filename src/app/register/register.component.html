@@ -1,1 +1,59 @@
-<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email">
+      <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName" type="text">
+      <div *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty)">
+        <small *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required.</small>
+        <small *ngIf="registerForm.get('firstName')?.errors?.['minlength']">First name must be at least 2 characters long.</small>
+        
+      </div>
+    </div>
+  
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName" type="text">
+      <div *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty)">
+        <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required.</small>
+        <small *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Last name must be at least 2 characters long.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="birthDate">Birth Date:</label>
+      <input id="birthDate" formControlName="birthDate" type="date">
+      <div *ngIf="registerForm.get('birthDate')?.invalid && (registerForm.get('birthDate')?.touched || registerForm.get('birthDate')?.dirty)">
+        <small *ngIf="registerForm.get('birthDate')?.errors?.['required']">Birth date is required.</small>
+        <small *ngIf="registerForm.get('birthDate')?.errors?.['age']">Age must be between 18 and 120.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" formControlName="password" type="password">
+      <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
+        <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['pattern']">Password must contain letters, numbers, and special characters.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="confirmPassword">Confirm Password:</label>
+      <input id="confirmPassword" formControlName="confirmPassword" type="password">
+      <div *ngIf="registerForm.errors?.['match']">
+        <small>Passwords must match.</small>
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+  

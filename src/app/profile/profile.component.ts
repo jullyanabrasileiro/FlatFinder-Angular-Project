@@ -1,10 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';  
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  user: any;  
+  isAdmin: boolean = false; 
 
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    
+    this.user = this.authService.getLoggedInUser();
+    this.isAdmin = this.authService.isAdmin();  
+  }
+
+  editProfile() {
+    this.router.navigate(['/profile-update', this.user.id]);
+  }
 }

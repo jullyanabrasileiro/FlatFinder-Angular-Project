@@ -1,1 +1,13 @@
-<p>profile works!</p>
+<div class="profile">
+    <h1>Profile</h1>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>First Name:</strong> {{ user.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+    <p><strong>Birth Date:</strong> {{ user.birthDate | date }}</p>
+  
+
+    <button *ngIf="isAdmin || authService.isCurrentUser(user)" (click)="editProfile()">
+      Edit Profile
+    </button>
+  </div>
+  
