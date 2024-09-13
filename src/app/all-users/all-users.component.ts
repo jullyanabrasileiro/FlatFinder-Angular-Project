@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service'; 
-import { User } from '../models/user.model'; 
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-all-users',
@@ -18,7 +18,7 @@ export class AllUsersComponent implements OnInit {
     maxFlats: null,
     isAdmin: 'all',
   };
-  sortField: keyof User = 'firstName';
+  sortField: keyof User | 'age' = 'firstName'; 
   sortOrder: 'asc' | 'desc' = 'asc';
 
   constructor(private userService: UserService) {}
@@ -64,16 +64,26 @@ export class AllUsersComponent implements OnInit {
     });
   }
 
-  sort(field: keyof User) {
+  sort(field: keyof User | 'age') {
     if (this.sortField === field) {
       this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
     } else {
       this.sortField = field;
       this.sortOrder = 'asc';
     }
+
     this.filteredUsers.sort((a, b) => {
-      const valueA = a[field];
-      const valueB = b[field];
+      let valueA: any;
+      let valueB: any;
+
+      if (field === 'age') {
+        valueA = this.calculateAge(a.birthDate);
+        valueB = this.calculateAge(b.birthDate);
+      } else {
+        valueA = a[field];
+        valueB = b[field];
+      }
+
       if (this.sortOrder === 'asc') {
         return valueA > valueB ? 1 : -1;
       } else {
