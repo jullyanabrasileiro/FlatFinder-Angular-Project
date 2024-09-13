@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 import { NewFlatComponent } from './new-flat/new-flat.component';
 import { ViewFlatComponent } from './view-flat/view-flat.component';
 import { EditFlatComponent } from './edit-flat/edit-flat.component';
@@ -33,11 +40,14 @@ import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messag
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
     AppRoutingModule,
     FormsModule, 
-    ReactiveFormsModule  
+    ReactiveFormsModule,
+    MatSidenavModule,      
+    MatButtonModule       
   ],
-  providers: [],
+  providers: [],     
   bootstrap: [AppComponent]
 })
 export class AppModule { }
