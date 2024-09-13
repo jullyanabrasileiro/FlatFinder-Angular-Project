@@ -1,0 +1,41 @@
+.profile {
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.profile p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.profile button {
+    padding: 10px 20px;
+    background-color: #ff329f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.profile button:hover {
+    background-color: #d21279;
+}
+
+.profile small {
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
