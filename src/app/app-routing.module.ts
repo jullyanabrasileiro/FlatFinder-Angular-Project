@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NewFlatComponent } from './new-flat/new-flat.component';
-import { ViewFlatComponent } from './view-flat/view-flat.component';
-import { EditFlatComponent } from './edit-flat/edit-flat.component';
-import { FavouritesComponent } from './favourites/favourites.component';
-import { SearchComponent } from './search/search.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messages.component';
+import { NewFlatComponent } from './components/new-flat/new-flat.component';
+import { ViewFlatComponent } from './components/view-flat/view-flat.component';
+import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
+import { SearchComponent } from './components/search/search.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
+import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-view-messages.component';
 
 const routes: Routes = [
   { path: 'new-flat', component: NewFlatComponent },
