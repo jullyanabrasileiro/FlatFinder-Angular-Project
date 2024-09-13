@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'update-profile', component: UpdateProfileComponent },
   { path: 'all-users', component: AllUsersComponent },
   { path: 'flat-view-messages', component: FlatViewMessagesComponent },
-  { path: '', redirectTo: '/search', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

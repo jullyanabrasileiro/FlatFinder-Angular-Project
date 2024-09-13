@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { User } from '../models/user.model'; 
 
 @Injectable({
@@ -14,7 +15,9 @@ export class AuthService {
   }
 
   login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post('/api/login', credentials); 
+    return this.http.post('/api/login', credentials).pipe(
+      catchError(this.handleError('login', {}))
+    );
   }
 
   logout() {
@@ -46,5 +49,12 @@ export class AuthService {
         isAdmin: true
       };
     }
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
   }
 }
