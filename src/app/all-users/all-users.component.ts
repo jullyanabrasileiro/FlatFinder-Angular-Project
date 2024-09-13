@@ -1,56 +1,70 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service'; // Adjust the path as necessary
+import { UserService } from '../services/user.service'; 
+import { User } from '../models/user.model'; 
 
 @Component({
   selector: 'app-all-users',
   templateUrl: './all-users.component.html',
-  styleUrls: ['./all-users.component.css']
+  styleUrls: ['./all-users.component.css'],
 })
 export class AllUsersComponent implements OnInit {
-  users: any[] = [];
-  filteredUsers: any[] = [];
+  users: User[] = [];
+  filteredUsers: User[] = [];
   filters = {
     userType: 'all',
     minAge: null,
     maxAge: null,
     minFlats: null,
     maxFlats: null,
-    isAdmin: 'all'
+    isAdmin: 'all',
   };
-  sortOrder = 'asc';
-  sortField = '';
+  sortField: keyof User = 'firstName';
+  sortOrder: 'asc' | 'desc' = 'asc';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.loadUsers();
   }
 
   loadUsers() {
-    this.userService.getAllUsers().subscribe((users: any[]) => {
-      this.users = users;
+    this.userService.getAllUsers().subscribe((data: User[]) => {
+      this.users = data;
       this.filteredUsers = [...this.users];
     });
   }
 
   calculateAge(birthDate: Date): number {
-    const currentDate = new Date();
+    const today = new Date();
     const birth = new Date(birthDate);
-    return currentDate.getFullYear() - birth.getFullYear();
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDifference = today.getMonth() - birth.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
   }
 
   applyFilters() {
-    this.filteredUsers = this.users.filter(user => {
+    this.filteredUsers = this.users.filter((user) => {
       const age = this.calculateAge(user.birthDate);
-      const matchesAge = (!this.filters.minAge || age >= this.filters.minAge) && (!this.filters.maxAge || age <= this.filters.maxAge);
-      const matchesFlats = (!this.filters.minFlats || user.flatsCounter >= this.filters.minFlats) && (!this.filters.maxFlats || user.flatsCounter <= this.filters.maxFlats);
-      const matchesAdmin = this.filters.isAdmin === 'all' || user.isAdmin === (this.filters.isAdmin === 'true');
-      const matchesUserType = this.filters.userType === 'all' || (this.filters.userType === 'admin' ? user.isAdmin : !user.isAdmin);
-      return matchesAge && matchesFlats && matchesAdmin && matchesUserType;
+      const matchesUserType =
+        this.filters.userType === 'all' ||
+        (this.filters.userType === 'admin' ? user.isAdmin : !user.isAdmin);
+      const matchesAge =
+        (!this.filters.minAge || age >= this.filters.minAge) &&
+        (!this.filters.maxAge || age <= this.filters.maxAge);
+      const matchesFlats =
+        (!this.filters.minFlats || user.flatsCounter >= this.filters.minFlats) &&
+        (!this.filters.maxFlats || user.flatsCounter <= this.filters.maxFlats);
+      const matchesIsAdmin =
+        this.filters.isAdmin === 'all' ||
+        (this.filters.isAdmin === 'true' ? user.isAdmin : !user.isAdmin);
+      return matchesUserType && matchesAge && matchesFlats && matchesIsAdmin;
     });
   }
 
-  sort(field: string) {
+  sort(field: keyof User) {
     if (this.sortField === field) {
       this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
     } else {
@@ -58,23 +72,25 @@ export class AllUsersComponent implements OnInit {
       this.sortOrder = 'asc';
     }
     this.filteredUsers.sort((a, b) => {
+      const valueA = a[field];
+      const valueB = b[field];
       if (this.sortOrder === 'asc') {
-        return a[field] > b[field] ? 1 : -1;
+        return valueA > valueB ? 1 : -1;
       } else {
-        return a[field] < b[field] ? 1 : -1;
+        return valueA < valueB ? 1 : -1;
       }
     });
   }
 
-  grantAdmin(user: any) {
-
+  grantAdmin(user: User) {
+    console.log(`Grant admin to: ${user.firstName} ${user.lastName}`);
   }
 
-  removeUser(user: any) {
-
+  removeUser(user: User) {
+    console.log(`Remove user: ${user.firstName} ${user.lastName}`);
   }
 
-  viewProfile(user: any) {
-
+  viewProfile(user: User) {
+    console.log(`Viewing profile of: ${user.firstName} ${user.lastName}`);
   }
 }

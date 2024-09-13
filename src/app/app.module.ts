@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewFlatComponent } from './new-flat/new-flat.component';
 import { ViewFlatComponent } from './view-flat/view-flat.component';
 import { EditFlatComponent } from './edit-flat/edit-flat.component';
@@ -14,8 +15,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messages.component';
-
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    FormsModule, 
+    ReactiveFormsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
