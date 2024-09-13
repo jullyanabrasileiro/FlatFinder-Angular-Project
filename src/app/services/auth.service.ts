@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+isCurrentUser(arg0: any): any {
+throw new Error('Method not implemented.');
+}
   isAdmin(): boolean {
     throw new Error('Method not implemented.');
   }

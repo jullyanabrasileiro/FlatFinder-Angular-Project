@@ -1,1 +1,58 @@
-<p>all-users works!</p>
+<div class="all-users">
+    <h1>All Users</h1>
+  
+    <div class="filter-section">
+      <label>User Type: </label>
+      <select [(ngModel)]="filters.userType">
+        <option value="all">All</option>
+        <option value="admin">Admin</option>
+        <option value="regular">Regular</option>
+      </select>
+  
+      <label>Age Range: </label>
+      <input type="number" placeholder="Min Age" [(ngModel)]="filters.minAge">
+      <input type="number" placeholder="Max Age" [(ngModel)]="filters.maxAge">
+  
+      <label>Flats Counter Range: </label>
+      <input type="number" placeholder="Min" [(ngModel)]="filters.minFlats">
+      <input type="number" placeholder="Max" [(ngModel)]="filters.maxFlats">
+  
+      <label>Is Admin: </label>
+      <select [(ngModel)]="filters.isAdmin">
+        <option value="all">All</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+      
+      <button (click)="applyFilters()">Apply Filters</button>
+    </div>
+  
+    <!-- Users Table -->
+    <table>
+      <thead>
+        <tr>
+          <th (click)="sort('firstName')">First Name</th>
+          <th (click)="sort('lastName')">Last Name</th>
+          <th (click)="sort('age')">Age</th>
+          <th (click)="sort('flatsCounter')">Flats Counter</th>
+          <th>Is Admin</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ calculateAge(user.birthDate) }}</td>
+          <td>{{ user.flatsCounter }}</td>
+          <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td>
+          <td>
+            <button (click)="grantAdmin(user)">Grant Admin</button>
+            <button (click)="removeUser(user)">Remove</button>
+            <button (click)="viewProfile(user)">View Profile</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

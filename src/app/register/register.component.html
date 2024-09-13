@@ -14,7 +14,6 @@
       <div *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty)">
         <small *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required.</small>
         <small *ngIf="registerForm.get('firstName')?.errors?.['minlength']">First name must be at least 2 characters long.</small>
-        
       </div>
     </div>
   
