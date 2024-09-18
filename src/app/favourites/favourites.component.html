@@ -1,1 +1,36 @@
-<p>favourites works!</p>
+<div class="favourites-container">
+    <h2>My Favourites</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>Street Name</th>
+          <th>Street Number</th>
+          <th>Area Size</th>
+          <th>Has AC</th>
+          <th>Year Built</th>
+          <th>Rent Price</th>
+          <th>Date Available</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flat of favourites">
+          <td>{{ flat.city }}</td>
+          <td>{{ flat.streetName }}</td>
+          <td>{{ flat.streetNumber }}</td>
+          <td>{{ flat.areaSize }}</td>
+          <td>{{ flat.hasAC ? 'Yes' : 'No' }}</td>
+          <td>{{ flat.yearBuilt }}</td>
+          <td>${{ flat.rentPrice }}</td>
+          <td>{{ flat.dateAvailable | date }}</td>
+          <td>
+            <button (click)="viewFlat(flat.id)">View</button>
+            <button (click)="removeFavourite(flat.id)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
