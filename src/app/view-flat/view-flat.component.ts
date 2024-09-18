@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthService } from '../auth.service'; // Assume you have an AuthService for user info
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-view-flat',
