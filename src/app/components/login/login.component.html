@@ -1,4 +1,5 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+<div id="login-page">
+<form [formGroup]="loginForm" id="login-form"  (ngSubmit)="onLogin()">
     <div>
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" required />
@@ -20,4 +21,4 @@
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
     <button type="button" (click)="navigateToRegister()">Register</button>
   </form>
-  
+</div>
