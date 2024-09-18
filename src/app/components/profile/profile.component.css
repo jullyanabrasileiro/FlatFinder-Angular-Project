@@ -33,9 +33,3 @@
 .profile button:hover {
     background-color: #d21279;
 }
-
-.profile small {
-    color: red;
-    display: block;
-    margin-top: 5px;
-}
