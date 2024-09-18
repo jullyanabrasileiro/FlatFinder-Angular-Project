@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messages.component';
+import { MyFlatsComponent } from './my-flats/my-flats.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messag
     ProfileComponent,
     UpdateProfileComponent,
     AllUsersComponent,
-    FlatViewMessagesComponent
+    FlatViewMessagesComponent,
+    MyFlatsComponent
   ],
   imports: [
     BrowserModule,
