@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthService } from '../auth.service'; // Assume you have an AuthService for user info
+import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,14 +14,16 @@ export class FavouritesComponent implements OnInit {
 
   constructor(
     private firestore: AngularFirestore,
-    private authService: AuthService, // Assume you have an AuthService to get current user info
+    private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe(user => {
-      this.userId = user.uid;
-      this.loadFavourites();
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.userId = user.uid;
+        this.loadFavourites();
+      }
     });
   }
 

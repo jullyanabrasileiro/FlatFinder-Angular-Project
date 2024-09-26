@@ -57,7 +57,7 @@
     flex-direction: column;
 }
 
-.new-flat-container div *ngIf {
+.new-flat-container div {
     color: red;
     font-size: 0.875rem;
     margin-top: 5px;
