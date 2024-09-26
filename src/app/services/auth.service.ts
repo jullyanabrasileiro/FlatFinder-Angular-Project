@@ -1,60 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { User } from '../models/user.model'; 
+import { AngularFireAuth } from '@angular/fire/compat/auth'; // Correct import for AngularFire
+import { Observable } from 'rxjs';
+import firebase from 'firebase/compat/app'; // Import firebase for compatibility
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUser: User | null = null;
-
-  constructor(private http: HttpClient) {
-    this.loadCurrentUser();
-  }
-
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post('/api/login', credentials).pipe(
-      catchError(this.handleError('login', {}))
-    );
-  }
-
-  logout() {
-    localStorage.removeItem('token');
-    this.currentUser = null;
-  }
-
   getLoggedInUser(): User | null {
-    return this.currentUser; 
+    throw new Error('Method not implemented.');
   }
-
   isAdmin(): boolean {
-    return this.currentUser?.isAdmin ?? false; 
+    throw new Error('Method not implemented.');
+  }
+isCurrentUser(arg0: User): any {
+throw new Error('Method not implemented.');
+}
+  login(arg0: { email: any; password: any; }) {
+    throw new Error('Method not implemented.');
+  }
+  user$: Observable<firebase.User | null>;  // firebase.User for type
+
+  constructor(private afAuth: AngularFireAuth) {
+    this.user$ = afAuth.authState;
   }
 
-  isCurrentUser(user: User): boolean {
-    return this.currentUser?.email === user.email; 
+  async signIn(email: string, password: string): Promise<firebase.auth.UserCredential> {
+    return await this.afAuth.signInWithEmailAndPassword(email, password);
   }
-
-  private loadCurrentUser() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.currentUser = {
-        email: 'test@example.com',
-        firstName: 'John',
-        lastName: 'Doe',
-        birthDate: new Date('1990-01-01'),
-        flatsCounter: 5,
-        isAdmin: true
-      };
-    }
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
+  
+  async signOut(): Promise<void> {
+    return await this.afAuth.signOut();
   }
 }
+
+
