@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewFlatComponent } from './components/new-flat/new-flat.component';
 import { ViewFlatComponent } from './components/view-flat/view-flat.component';
-import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,7 +25,6 @@ import { MyFlatsComponent } from './components/my-flats/my-flats.component';
     AppComponent,
     NewFlatComponent,
     ViewFlatComponent,
-    EditFlatComponent,
     FavouritesComponent,
     SearchComponent,
     LoginComponent,
@@ -41,7 +40,8 @@ import { MyFlatsComponent } from './components/my-flats/my-flats.component';
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

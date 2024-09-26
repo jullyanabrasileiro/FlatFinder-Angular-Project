@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NewFlatComponent } from './components/new-flat/new-flat.component';
 import { ViewFlatComponent } from './components/view-flat/view-flat.component';
-import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
 import { MyFlatsComponent } from './components/my-flats/my-flats.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { SearchComponent } from './components/search/search.component';
@@ -17,7 +16,6 @@ import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-
 const routes: Routes = [
   { path: 'new-flat', component: NewFlatComponent },
   { path: 'view-flat', component: ViewFlatComponent },
-  { path: 'edit-flat', component: EditFlatComponent },
   { path: 'my-flats', component: MyFlatsComponent },
   { path: 'favourites', component: FavouritesComponent },
   { path: 'search', component: SearchComponent },

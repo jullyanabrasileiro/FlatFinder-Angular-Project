@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthService } from '../auth.service'; // Assume you have an AuthService for user info
+import { AuthService } from '../../services/auth.service'; // Assume you have an AuthService for user info
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,11 +27,14 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe(user => {
-      this.userId = user.uid;
-      this.loadFlats();
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.userId = user.uid; // Safely access user ID
+        this.loadFlats(); // Load flats once user is authenticated
+      }
     });
-  }
+}
+
 
   loadFlats(): void {
     this.firestore.collection('flats').valueChanges()
@@ -52,7 +55,7 @@ export class SearchComponent implements OnInit {
         this.firestore.collection('users').doc(this.userId).collection('favourites').doc(flatId).delete();
       } else {
         // Add to favorites
-        this.firestore.collection('users').doc(this.userId).collection('favourites').doc(flatId).set({}); // Add flat details if needed
+        this.firestore.collection('users').doc(this.userId).collection('favourites').doc(flatId).set({});
       }
     });
   }
