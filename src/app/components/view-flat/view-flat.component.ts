@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
+import { Flat } from '../../models/flat.model';
 
 @Component({
   selector: 'app-view-flat',
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./view-flat.component.css']
 })
 export class ViewFlatComponent implements OnInit {
-  flat: any;
+  flat: Flat | undefined;
   isOwner: boolean = false;
   userId: string = ''; // User ID of the logged-in user
   flatId: string = ''; // ID of the flat to be viewed
@@ -18,24 +19,31 @@ export class ViewFlatComponent implements OnInit {
     private firestore: AngularFirestore,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService // Assume you have an AuthService to get current user info
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.flatId = this.route.snapshot.paramMap.get('id')!;
-    this.authService.getCurrentUser().subscribe(user => {
-      this.userId = user.uid;
-      this.loadFlatDetails();
+    this.authService.user$.subscribe(user => {
+      if (user) { 
+        this.userId = user.uid;
+        this.loadFlatDetails();
+      } else {
+        console.warn("No user is authenticated.");
+      }
     });
-  }
+}
 
-  loadFlatDetails(): void {
-    this.firestore.collection('flats').doc(this.flatId).valueChanges().subscribe(flat => {
-      this.flat = flat;
-      // Check if the current user is the owner of the flat
-      this.isOwner = flat.ownerId === this.userId; // Assuming you store ownerId in flat
-    });
-  }
+
+loadFlatDetails(): void {
+  this.firestore.collection<Flat>('flats').doc(this.flatId).valueChanges().subscribe((flat: Flat | undefined) => {
+    this.flat = flat;
+    if (flat) { 
+      this.isOwner = flat.ownerId === this.userId; 
+    }
+  });
+}
+
 
   editFlat(): void {
     this.router.navigate([`/edit-flat/${this.flatId}`]);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthService } from '../../services/auth.service'; // Assume you have an AuthService for user info
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private firestore: AngularFirestore,
-    private authService: AuthService, // Assume you have an AuthService to get current user info
+    private authService: AuthService, 
     private router: Router
   ) {}
 
@@ -34,7 +34,6 @@ export class SearchComponent implements OnInit {
       }
     });
 }
-
 
   loadFlats(): void {
     this.firestore.collection('flats').valueChanges()
