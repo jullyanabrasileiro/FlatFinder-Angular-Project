@@ -49,7 +49,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     ReactiveFormsModule,
     MatSidenavModule,
     MatButtonModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), // Inicialize o Firebase
+    AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireAuthModule,
   ],
   providers: [
