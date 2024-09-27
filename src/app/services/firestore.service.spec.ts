@@ -1,16 +1,19 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
-import { FirestoreService } from './firestore.service';
+@Injectable({
+  providedIn: 'root'
+})
+export class FirestoreService {
+  constructor(private firestore: AngularFirestore) {}
 
-describe('FirestoreService', () => {
-  let service: FirestoreService;
+  addDocument(collectionName: string, data: any): Promise<any> {
+    return this.firestore.collection(collectionName).add(data);
+  }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FirestoreService);
-  });
+  getDocuments(collectionName: string): Observable<any[]> {
+    return this.firestore.collection(collectionName).valueChanges();
+  }
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+}

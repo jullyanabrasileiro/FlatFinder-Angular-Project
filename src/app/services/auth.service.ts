@@ -20,8 +20,19 @@ export class AuthService {
 isCurrentUser(arg0: User): any {
 throw new Error('Method not implemented.');
 }
-  login(arg0: { email: any; password: any; }) {
-    throw new Error('Method not implemented.');
+  login(credentials: { email: string; password: string }): Observable<{ success: boolean; token: string }> {
+    return new Observable(observer => {
+        this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password)
+            .then(async (userCredential) => {
+                const token = await userCredential.user?.getIdToken(); 
+                observer.next({ success: true, token: token || '' });
+                observer.complete(); 
+            })
+            .catch(error => {
+                observer.next({ success: false, token: '' });
+                observer.error(error); 
+            });
+    });
   }
   user$: Observable<firebase.User | null>;
 

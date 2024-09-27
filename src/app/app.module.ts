@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';  
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { NewFlatComponent } from './components/new-flat/new-flat.component';
 import { ViewFlatComponent } from './components/view-flat/view-flat.component';
@@ -21,6 +21,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-view-messages.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../environment/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -43,11 +47,14 @@ import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,  
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Inicialize o Firebase
+    AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
