@@ -17,7 +17,7 @@ import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
 const routes: Routes = [
   { path: 'new-flat', component: NewFlatComponent },
   { path: 'view-flat', component: ViewFlatComponent },
-  { path: 'edit-flat', component: EditFlatComponent },
+  { path: 'edit-flat', component: EditFlatComponent},
   { path: 'my-flats', component: MyFlatsComponent },
   { path: 'favourites', component: FavouritesComponent },
   { path: 'search', component: SearchComponent },
