@@ -1,1 +1,22 @@
-<p>flat-view-messages works!</p>
+<div class="flat-messages-container">
+    <h2>Messages for Flat</h2>
+    
+    <div *ngIf="messages.length > 0; else noMessages">
+      <div *ngFor="let message of messages" class="message-card">
+        <p><strong>{{ message.senderName }} ({{ message.senderEmail }})</strong></p>
+        <p>{{ message.creationTime | date: 'short' }}</p>
+        <p>{{ message.content }}</p>
+      </div>
+    </div>
+  
+    <ng-template #noMessages>
+      <p>No messages for this flat yet.</p>
+    </ng-template>
+  
+    <div *ngIf="!isOwner">
+      <h3>Send a Message</h3>
+      <textarea [(ngModel)]="newMessage" placeholder="Write your message here..."></textarea>
+      <button (click)="sendMessage()">Send Message</button>
+    </div>
+  </div>
+  

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
@@ -46,6 +47,7 @@ import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -53,7 +55,8 @@ import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     MatSidenavModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [
     provideAnimationsAsync()

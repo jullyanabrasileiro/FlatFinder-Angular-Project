@@ -1,0 +1,65 @@
+.flat-messages-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+}
+
+.flat-messages-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.flat-messages-container h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.flat-messages-container p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.message-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.flat-messages-container textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.flat-messages-container button {
+    padding: 10px 20px;
+    background-color: #ff329f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.flat-messages-container button:hover {
+    background-color: #d21279;
+}
+
+.flat-messages-container p strong {
+    font-weight: bold;
+}
