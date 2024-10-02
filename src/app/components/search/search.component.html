@@ -1,0 +1,69 @@
+<div class="search-container">
+    <h2>Search Flats</h2>
+    
+    <!-- Filters -->
+    <div class="filters">
+      <label for="city">City:</label>
+      <input id="city" [(ngModel)]="filter.city" placeholder="Enter city" />
+  
+      <label for="minPrice">Min Price:</label>
+      <input id="minPrice" type="number" [(ngModel)]="filter.minPrice" />
+  
+      <label for="maxPrice">Max Price:</label>
+      <input id="maxPrice" type="number" [(ngModel)]="filter.maxPrice" />
+  
+      <label for="minAreaSize">Min Area Size:</label>
+      <input id="minAreaSize" type="number" [(ngModel)]="filter.minAreaSize" />
+  
+      <label for="maxAreaSize">Max Area Size:</label>
+      <input id="maxAreaSize" type="number" [(ngModel)]="filter.maxAreaSize" />
+  
+      <button (click)="applyFilters()">Apply Filters</button>
+    </div>
+  
+    <!-- Sort -->
+    <div class="sort">
+      <label for="sort">Sort By:</label>
+      <select id="sort" [(ngModel)]="sort">
+        <option value="city">City</option>
+        <option value="price">Price</option>
+        <option value="areaSize">Area Size</option>
+      </select>
+    </div>
+  
+    <!-- Flats Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>Street Name</th>
+          <th>Street Number</th>
+          <th>Area Size</th>
+          <th>Has AC</th>
+          <th>Year Built</th>
+          <th>Rent Price</th>
+          <th>Date Available</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flat of flats">
+          <td>{{ flat.city }}</td>
+          <td>{{ flat.streetName }}</td>
+          <td>{{ flat.streetNumber }}</td>
+          <td>{{ flat.areaSize }}</td>
+          <td>{{ flat.hasAC ? 'Yes' : 'No' }}</td>
+          <td>{{ flat.yearBuilt }}</td>
+          <td>${{ flat.rentPrice }}</td>
+          <td>{{ flat.dateAvailable | date }}</td>
+          <td>
+            <button (click)="viewFlat(flat.id)">View</button>
+            <button (click)="toggleFavorite(flat.id)">
+              {{ (flat.isFavorite ? 'Unmark' : 'Mark') + ' as Favorite' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

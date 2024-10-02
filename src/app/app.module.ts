@@ -1,30 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 
+// Components
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewFlatComponent } from './new-flat/new-flat.component';
-import { ViewFlatComponent } from './view-flat/view-flat.component';
-import { EditFlatComponent } from './edit-flat/edit-flat.component';
-import { FavouritesComponent } from './favourites/favourites.component';
-import { SearchComponent } from './search/search.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messages.component';
+import { NewFlatComponent } from './components/new-flat/new-flat.component';
+import { ViewFlatComponent } from './components/view-flat/view-flat.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
+import { SearchComponent } from './components/search/search.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
+import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-view-messages.component';
+import { MyFlatsComponent } from './components/my-flats/my-flats.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewFlatComponent,
     ViewFlatComponent,
-    EditFlatComponent,
     FavouritesComponent,
     SearchComponent,
     LoginComponent,
@@ -32,16 +40,24 @@ import { FlatViewMessagesComponent } from './flat-view-messages/flat-view-messag
     ProfileComponent,
     UpdateProfileComponent,
     AllUsersComponent,
-    FlatViewMessagesComponent
+    FlatViewMessagesComponent,
+    MyFlatsComponent,
+    EditFlatComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    MatSidenavModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,33 @@
+<div class="view-flat-container">
+    <h2>Flat Details</h2>
+    
+    <div *ngIf="flat">
+      <!-- City -->
+      <p><strong>City:</strong> {{ flat.city }}</p>
+      
+      <!-- Street Name -->
+      <p><strong>Street Name:</strong> {{ flat.streetName }}</p>
+      
+      <!-- Street Number -->
+      <p><strong>Street Number:</strong> {{ flat.streetNumber }}</p>
+      
+      <!-- Area Size -->
+      <p><strong>Area Size:</strong> {{ flat.areaSize }} sq meters</p>
+      
+      <!-- Has AC -->
+      <p><strong>Has AC:</strong> {{ flat.hasAC ? 'Yes' : 'No' }}</p>
+      
+      <!-- Year Built -->
+      <p><strong>Year Built:</strong> {{ flat.yearBuilt }}</p>
+      
+      <!-- Rent Price -->
+      <p><strong>Rent Price:</strong> ${{ flat.rentPrice }}</p>
+      
+      <!-- Date Available -->
+      <p><strong>Date Available:</strong> {{ flat.dateAvailable | date }}</p>
+  
+      <!-- Edit Button -->
+      <button *ngIf="isOwner" (click)="editFlat()">Edit</button>
+    </div>
+  </div>
+  

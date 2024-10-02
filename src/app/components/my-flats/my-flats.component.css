@@ -1,0 +1,86 @@
+.my-flats-container {
+    background-color: #f7f7f7;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.my-flats-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.my-flats-container button {
+    padding: 10px 20px;
+    background-color: #ff329f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.my-flats-container button:hover {
+    background-color: #d21279;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table thead th {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 1rem;
+    color: #333;
+}
+
+table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table button {
+    padding: 5px 10px;
+    background-color: #ff329f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+table button:hover {
+    background-color: #d21279;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .my-flats-container {
+        padding: 20px;
+    }
+
+    table thead th, table tbody td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .my-flats-container button {
+        font-size: 0.9rem;
+    }
+}

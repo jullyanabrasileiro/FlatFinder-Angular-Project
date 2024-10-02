@@ -1,0 +1,38 @@
+<div class="my-flats-container">
+    <h2>My Flats</h2>
+    
+    <button (click)="addNewFlat()">Insert New Flat</button>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>Street Name</th>
+          <th>Street Number</th>
+          <th>Area Size</th>
+          <th>Has AC</th>
+          <th>Year Built</th>
+          <th>Rent Price</th>
+          <th>Date Available</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flat of flats">
+          <td>{{ flat.city }}</td>
+          <td>{{ flat.streetName }}</td>
+          <td>{{ flat.streetNumber }}</td>
+          <td>{{ flat.areaSize }}</td>
+          <td>{{ flat.hasAC ? 'Yes' : 'No' }}</td>
+          <td>{{ flat.yearBuilt }}</td>
+          <td>${{ flat.rentPrice }}</td>
+          <td>{{ flat.dateAvailable | date }}</td>
+          <td>
+            <button (click)="viewFlat(flat.id)">View</button>
+            <button (click)="editFlat(flat.id)">Edit</button>
+            <button (click)="deleteFlat(flat.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
