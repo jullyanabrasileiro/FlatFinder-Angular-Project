@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
@@ -23,6 +25,7 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-view-messages.component';
 import { MyFlatsComponent } from './components/my-flats/my-flats.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -46,9 +49,13 @@ import { MyFlatsComponent } from './components/my-flats/my-flats.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatSidenavModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
