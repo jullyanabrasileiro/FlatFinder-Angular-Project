@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service'; 
+import { AuthService } from '../../services/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';  
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private afAuth: AngularFireAuth,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -26,29 +28,17 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
 
-      this.authService.login({ email, password }).subscribe(
-        (response: { success: boolean; token: string; }) => {
-          if (response.success) {
-            localStorage.setItem('token', response.token);
-            this.router.navigate(['/home']);
-            this.setSessionTimeout();
-          }
-        },
-        (error: any) => {
-          console.error('Login failed', error); 
-        }
-      );
+      this.afAuth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          this.router.navigate(['/search']);
+        })
+        .catch((error) => {
+          console.error('Login failed', error);
+        });
     }
   }
 
   navigateToRegister() {
-    this.router.navigate(['/register']); 
-  }
-
-  setSessionTimeout() {
-    setTimeout(() => {
-      this.authService.logout();
-      this.router.navigate(['/login']); 
-    }, 3600000); 
+    this.router.navigate(['/register']);
   }
 }
