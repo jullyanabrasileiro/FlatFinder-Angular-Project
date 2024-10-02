@@ -26,6 +26,7 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
 import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-view-messages.component';
 import { MyFlatsComponent } from './components/my-flats/my-flats.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     UpdateProfileComponent,
     AllUsersComponent,
     FlatViewMessagesComponent,
-    MyFlatsComponent
+    MyFlatsComponent,
+    EditFlatComponent
   ],
   imports: [
     BrowserModule,

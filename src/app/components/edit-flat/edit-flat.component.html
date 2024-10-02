@@ -1,0 +1,41 @@
+<div class="edit-flat-container">
+    <h2>Edit Flat</h2>
+  
+    <form [formGroup]="flatForm" (ngSubmit)="onSubmit()">
+      <!-- City -->
+      <label for="city">City:</label>
+      <input id="city" formControlName="city" type="text">
+      
+      <!-- Street Name -->
+      <label for="streetName">Street Name:</label>
+      <input id="streetName" formControlName="streetName" type="text">
+      
+      <!-- Street Number -->
+      <label for="streetNumber">Street Number:</label>
+      <input id="streetNumber" formControlName="streetNumber" type="number">
+      
+      <!-- Area Size -->
+      <label for="areaSize">Area Size (sq meters):</label>
+      <input id="areaSize" formControlName="areaSize" type="number">
+      
+      <!-- Has AC -->
+      <label for="hasAC">Has AC:</label>
+      <input id="hasAC" formControlName="hasAC" type="checkbox">
+      
+      <!-- Year Built -->
+      <label for="yearBuilt">Year Built:</label>
+      <input id="yearBuilt" formControlName="yearBuilt" type="number">
+      
+      <!-- Rent Price -->
+      <label for="rentPrice">Rent Price ($):</label>
+      <input id="rentPrice" formControlName="rentPrice" type="number">
+      
+      <!-- Date Available -->
+      <label for="dateAvailable">Date Available:</label>
+      <input id="dateAvailable" formControlName="dateAvailable" type="date">
+      
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="flatForm.invalid">Update Flat</button>
+    </form>
+  </div>
+  

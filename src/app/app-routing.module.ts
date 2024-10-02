@@ -12,10 +12,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { FlatViewMessagesComponent } from './components/flat-view-messages/flat-view-messages.component';
+import { EditFlatComponent } from './components/edit-flat/edit-flat.component';
 
 const routes: Routes = [
   { path: 'new-flat', component: NewFlatComponent },
   { path: 'view-flat', component: ViewFlatComponent },
+  { path: 'edit-flat', component: EditFlatComponent},
   { path: 'my-flats', component: MyFlatsComponent },
   { path: 'favourites', component: FavouritesComponent },
   { path: 'search', component: SearchComponent },

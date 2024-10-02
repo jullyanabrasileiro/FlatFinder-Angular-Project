@@ -1,0 +1,65 @@
+.edit-flat-container {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.edit-flat-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    font-size: 1.1rem;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type="text"], input[type="number"], input[type="date"], input[type="checkbox"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .edit-flat-container {
+        padding: 20px;
+    }
+
+    .edit-flat-container h2 {
+        font-size: 1.5rem;
+    }
+
+    label, input {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+}
