@@ -3,5 +3,5 @@ export interface Message {
     senderName: string;
     senderEmail: string;
     content: string;
-  }
+}
   
