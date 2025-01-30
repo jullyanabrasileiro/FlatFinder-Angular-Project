@@ -1,14 +1,12 @@
-const Message = require('../models/Message');
-const Flat = require('../models/Flat');
+const Message = require('../models/Message.js');
+const Flat = require('../models/Flat.js');
 
-// Get all messages for a flat
 const getAllMessages = async (req, res) => {
   try {
     const flat = await Flat.findById(req.params.id);
 
     if (!flat) return res.status(404).json({ message: 'Flat not found' });
-
-    // Check if the logged-in user is the flat owner
+r
     if (flat.ownerId.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Permission denied' });
     }
@@ -32,7 +30,6 @@ const getUserMessages = async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch messages' });
   }
 };
-
 
 const addMessage = async (req, res) => {
   try {

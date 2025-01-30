@@ -1,6 +1,6 @@
 const express = require('express');
-const { getAllFlats, getFlatById, addFlat, updateFlat, deleteFlat } = require('../controllers/flatController');
-const authMiddleware = require('../middleware/authMiddleware');
+const { getAllFlats, getFlatById, addFlat, updateFlat, deleteFlat } = require('../controllers/flatController.js');
+const authMiddleware = require('../middleware/authMiddleware.js');
 
 const router = express.Router();
 

@@ -1,7 +1,6 @@
-const Flat = require('../models/Flat');
-const User = require('../models/User');
+const Flat = require('../models/Flat.js');
+const User = require('../models/User.js');
 
-// Get all flats
 const getAllFlats = async (req, res) => {
   try {
     const flats = await Flat.find();
@@ -11,7 +10,6 @@ const getAllFlats = async (req, res) => {
   }
 };
 
-// Get flat by ID
 const getFlatById = async (req, res) => {
   try {
     const flat = await Flat.findById(req.params.id);
@@ -22,13 +20,11 @@ const getFlatById = async (req, res) => {
   }
 };
 
-// Add new flat
 const addFlat = async (req, res) => {
   try {
     const newFlat = new Flat({ ...req.body, ownerId: req.user.id });
     const savedFlat = await newFlat.save();
 
-    // Increment the flats counter for the user
     await User.findByIdAndUpdate(req.user.id, { $inc: { flatsCounter: 1 } });
 
     res.status(201).json(savedFlat);
@@ -37,14 +33,12 @@ const addFlat = async (req, res) => {
   }
 };
 
-// Update flat
 const updateFlat = async (req, res) => {
   try {
     const flat = await Flat.findById(req.params.id);
 
     if (!flat) return res.status(404).json({ message: 'Flat not found' });
 
-    // Check if the logged-in user is the flat owner
     if (flat.ownerId.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Permission denied' });
     }
@@ -56,14 +50,13 @@ const updateFlat = async (req, res) => {
   }
 };
 
-// Delete flat
+
 const deleteFlat = async (req, res) => {
   try {
     const flat = await Flat.findById(req.params.id);
 
     if (!flat) return res.status(404).json({ message: 'Flat not found' });
 
-    // Check if the logged-in user is the flat owner
     if (flat.ownerId.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Permission denied' });
     }
