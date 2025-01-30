@@ -20,7 +20,6 @@ const getAllMessages = async (req, res) => {
   }
 };
 
-// Get messages by sender
 const getUserMessages = async (req, res) => {
   try {
     const messages = await Message.find({
@@ -34,7 +33,7 @@ const getUserMessages = async (req, res) => {
   }
 };
 
-// Add a new message
+
 const addMessage = async (req, res) => {
   try {
     const flat = await Flat.findById(req.params.id);

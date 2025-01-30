@@ -70,7 +70,6 @@ const deleteFlat = async (req, res) => {
 
     await Flat.findByIdAndDelete(req.params.id);
 
-    // Decrement the flats counter for the user
     await User.findByIdAndUpdate(req.user.id, { $inc: { flatsCounter: -1 } });
 
     res.status(200).json({ message: 'Flat deleted successfully' });

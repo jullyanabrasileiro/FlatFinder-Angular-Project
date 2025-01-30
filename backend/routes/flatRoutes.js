@@ -1,13 +1,13 @@
 const express = require('express');
-const { getFlats, getFlatById, createFlat, updateFlat, deleteFlat } = require('../controllers/flatController');
-const { protect } = require('../middleware/authMiddleware');
+const { getAllFlats, getFlatById, addFlat, updateFlat, deleteFlat } = require('../controllers/flatController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.get('/', protect, getFlats);
-router.get('/:id', protect, getFlatById);
-router.post('/', protect, createFlat);
-router.patch('/:id', protect, updateFlat);
-router.delete('/:id', protect, deleteFlat);
+router.get('/', getAllFlats);
+router.get('/:id', getFlatById);
+router.post('/', authMiddleware, addFlat);
+router.patch('/:id', authMiddleware, updateFlat);
+router.delete('/:id', authMiddleware, deleteFlat);
 
 module.exports = router;
