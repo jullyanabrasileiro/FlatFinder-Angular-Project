@@ -1,74 +1,18 @@
 const Flat = require('../models/Flat.js');
 const User = require('../models/User.js');
 
-const getAllFlats = async (req, res) => {
-  try {
-    const flats = await Flat.find();
-    res.status(200).json(flats);
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to fetch flats' });
-  }
-};
-
-const getFlatById = async (req, res) => {
-  try {
-    const flat = await Flat.findById(req.params.id);
-    if (!flat) return res.status(404).json({ message: 'Flat not found' });
-    res.status(200).json(flat);
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to fetch flat' });
-  }
-};
-
-const addFlat = async (req, res) => {
-  try {
-    const newFlat = new Flat({ ...req.body, ownerId: req.user.id });
-    const savedFlat = await newFlat.save();
-
-    await User.findByIdAndUpdate(req.user.id, { $inc: { flatsCounter: 1 } });
-
-    res.status(201).json(savedFlat);
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to add flat' });
-  }
-};
-
 const updateFlat = async (req, res) => {
   try {
     const flat = await Flat.findById(req.params.id);
-
     if (!flat) return res.status(404).json({ message: 'Flat not found' });
 
-    if (flat.ownerId.toString() !== req.user.id) {
+    if (!flat.ownerId || flat.ownerId.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Permission denied' });
     }
 
-    const updatedFlat = await Flat.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedFlat = await Flat.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true, runValidators: true });
     res.status(200).json(updatedFlat);
   } catch (error) {
-    res.status(500).json({ message: 'Failed to update flat' });
+    res.status(500).json({ message: 'Failed to update flat', error: error.message });
   }
 };
-
-
-const deleteFlat = async (req, res) => {
-  try {
-    const flat = await Flat.findById(req.params.id);
-
-    if (!flat) return res.status(404).json({ message: 'Flat not found' });
-
-    if (flat.ownerId.toString() !== req.user.id) {
-      return res.status(403).json({ message: 'Permission denied' });
-    }
-
-    await Flat.findByIdAndDelete(req.params.id);
-
-    await User.findByIdAndUpdate(req.user.id, { $inc: { flatsCounter: -1 } });
-
-    res.status(200).json({ message: 'Flat deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to delete flat' });
-  }
-};
-
-module.exports = { getAllFlats, getFlatById, addFlat, updateFlat, deleteFlat };
