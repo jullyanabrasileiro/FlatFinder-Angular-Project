@@ -3,9 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const userRoutes = require('./routes/userRoutes');
-const flatRoutes = require('./routes/flatRoutes');
-const messageRoutes = require('./routes/messageRoutes');
+const userRoutes = require('./routes/userRoutes.js');
+const flatRoutes = require('./routes/flatRoutes.js');
+const messageRoutes = require('./routes/messageRoutes.js');
 
 const app = express();
 
