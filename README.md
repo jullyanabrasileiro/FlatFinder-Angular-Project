@@ -11,6 +11,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## DATABASE - MONGODB
 ![image](https://github.com/user-attachments/assets/37f48258-4036-4248-b1ff-f04170765613)
+![image](https://github.com/user-attachments/assets/25d45d1d-b15d-4647-901c-def138822055)
+
 
 
 
