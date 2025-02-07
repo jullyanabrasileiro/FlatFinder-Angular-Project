@@ -42,11 +42,18 @@ const isAccountOwner = async (req, res, next) => {
 const isFlatOwner = async (req, res, next) => {
     try {
         const flat = await Flat.findById(req.params.id);
-        if (!flat || flat.ownerId.toString() !== req.user.id) {
+        console.log("Flat founded:", flat); 
+
+        if (!flat) {
+            return res.status(404).json({ error: 'Flat not found' });
+        }
+        if (flat.ownerId.toString() !== req.user.id) {
             return res.status(403).json({ error: 'Access restricted to flat owner' });
         }
         next();
+
     } catch (error) {
+        console.error("Error verifying flat ownership", error);
         res.status(500).json({ error: 'Error verifying flat ownership' });
     }
 };

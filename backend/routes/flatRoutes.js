@@ -5,7 +5,7 @@ const FlatController = require('../controllers/flatController.js');
 
 router.get('/', verifyToken, FlatController.getAllFlats);
 router.get('/:id', verifyToken, FlatController.getFlatById);
-router.post('/', verifyToken, isFlatOwner, FlatController.addFlat);
+router.post('/', verifyToken, FlatController.addFlat);
 router.patch('/:id', verifyToken, isFlatOwner, FlatController.updateFlat);
 router.delete('/:id', verifyToken, isFlatOwner, FlatController.deleteFlat);
 

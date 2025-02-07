@@ -22,11 +22,25 @@ const getFlatById = async (req, res) => {
 
 const addFlat = async (req, res) => {
   try {
-    const newFlat = new Flat({ ...req.body, ownerId: req.user.id });
-    await newFlat.save();
-    res.status(201).json(newFlat);
+      const { city, streetName, streetNumber, areaSize, hasAC, yearBuilt, rentPrice, dateAvailable } = req.body;
+
+      const newFlat = new Flat({
+          city,
+          streetName,
+          streetNumber,
+          areaSize,
+          hasAC,
+          yearBuilt,
+          rentPrice,
+          dateAvailable,
+          ownerId: req.user.id // automatically defines the flat owner
+      });
+
+      await newFlat.save();
+      res.status(201).json(newFlat);
   } catch (error) {
-    res.status(500).json({ message: 'Failed to add flat', error: error.message });
+      console.error("Error creating flat:", error);
+      res.status(500).json({ error: 'Error creating flat' });
   }
 };
 
